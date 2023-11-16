@@ -35,6 +35,32 @@ const Customizer = () => {
                 ))}
               </div>
             </div>
+          </motion.div>
+                
+          <motion.div className="absolute top-5 right-5 z-10"
+            {...fadeAnimation}>
+              <CustomButton 
+                type="filled"
+                title="Go Back"
+                customStyles="w-fit px-4 py-1.5 font-bold bg-sky-500"
+                handleClick={()=>{state.intro = true}}>
+
+              </CustomButton>
+
+          </motion.div>
+
+          <motion.div className="filtertabs-container"
+            {...slideAnimation('up')}>
+              {FilterTabs.map((tab) => (
+                <Tab 
+                  key={tab.name}
+                  tab={tab}
+                  isFilterTab
+                  isActiveTab=""
+                  handleClick={() => {}}
+                  >
+                </Tab>
+              ))}
 
           </motion.div>
         </>
