@@ -1,5 +1,5 @@
 //import React from 'react'
-import {motion, AnimatePresence} from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useSnapshot } from 'valtio';
 import state from '../store';
 import { CustomButton } from "../components";
@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <AnimatePresence>
       {snap.intro && (
-        <motion.div className="home" {...slideAnimation('left')}>
+        <motion.section className="home" {...slideAnimation('left')}>
           
           <motion.header {...slideAnimation("down")}>
             <img 
@@ -52,7 +52,7 @@ const Home = () => {
 
           </motion.div>
 
-        </motion.div>
+        </motion.section>
       )}
     </AnimatePresence>
   )

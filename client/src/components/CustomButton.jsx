@@ -1,6 +1,6 @@
 import React from 'react'
 import { RGBADepthPacking } from 'three';
-import { snapshot, useSnapshot } from 'valtio'
+import { useSnapshot } from 'valtio'
 import state from '../store'
 
 const CustomButton = (props) => {

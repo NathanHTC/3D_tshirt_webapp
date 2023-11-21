@@ -42,7 +42,7 @@ const Customizer = () => {
               <CustomButton 
                 type="filled"
                 title="Go Back"
-                customStyles="w-fit px-4 py-1.5 font-bold bg-sky-500"
+                customStyles="w-fit px-4 py-1.5 font-bold text-sm"
                 handleClick={()=>{state.intro = true}}>
 
               </CustomButton>
