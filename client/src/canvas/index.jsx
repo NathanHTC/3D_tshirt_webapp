@@ -7,14 +7,19 @@ import Backdrop from './Backdrop';
 
 const CanvasModel = () => {
   return (
-    <Canvas>
+    <Canvas 
+      shadows
+      camera={{ position: [0, 0, 0], fov:25 }}
+      gl = {{ preserveDrawingBuffer:true }}
+
+    >
       {/* all direct children of Canvas should be 3D objects to interact with Three.js 
       //standard HTML element will cause an error */}
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={0.6} />
       <Environment preset="city" />
       
       <CameraRig>
-        {/* <Backdrop /> */}
+        <Backdrop />
         
         <Center>
           <Shirt />
