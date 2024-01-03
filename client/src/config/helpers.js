@@ -11,10 +11,14 @@ export const downloadCanvasToImage = () => {
 };
 
 export const reader = (file) =>
+  //this promise will return file content when success
   new Promise((resolve, reject) => {
     const fileReader = new FileReader();
     fileReader.onload = () => resolve(fileReader.result);
+    fileReader.onerror = () =>reject(fileReader.error);
     fileReader.readAsDataURL(file);
+    
+    
   });
 
 export const getContrastingColor = (color) => {

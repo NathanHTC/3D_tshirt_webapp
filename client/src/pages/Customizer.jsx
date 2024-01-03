@@ -34,12 +34,50 @@ const Customizer = () => {
       case "colorpicker":
         return <ColorPicker />
       case "filepicker":
-        return <FilePicker />
+        return <FilePicker 
+            file={file}
+            setFile={setFile} //pass into child component
+            readFile={readFile}
+        />
       case "aipicker":
         return <AIPicker />
       default:
         return null;
     }
+  }
+
+  const handleDecals = (type, result) => {
+    const decalType = DecalType[type];
+
+    state[decalType.stateProperty] = result;
+    if(!activeFilterTab[decalType.filterTab]){
+      handleAciveFilterTab(decalType.filterTab)
+    }
+  }
+
+  const handleAciveFilterTab = (tabName) => {
+    switch(tabName){
+      case "logoShirt":
+        state.isLogoTexture = !activeFilterTab[tabName];
+        break;
+      case "stylishShirt":
+        state.isFullTexture = !activeFilterTab[tabName];
+      default:
+        state.isFullTexture = false;
+        state.isLogoTxture = true;
+    }
+  }
+
+  const readFile = (type) => {
+    reader(file) //this will return a promise
+    .then((result) => {
+      handleDecals(type,result);
+      setActiveEditorTabs("");
+    })
+    .catch((err) => {
+      console.error("Error reading file:", error);
+    } )
+
   }
 
 
