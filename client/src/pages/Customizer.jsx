@@ -62,10 +62,18 @@ const Customizer = () => {
         break;
       case "stylishShirt":
         state.isFullTexture = !activeFilterTab[tabName];
+        break;
       default:
-        state.isFullTexture = false;
         state.isLogoTxture = true;
+        state.isFullTexture = false;
     }
+    //after setting the state, activeFilterTab is updated
+    setActiveFilterTab((prevState) => {
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName]
+      }
+    })
   }
 
   const readFile = (type) => {
@@ -75,7 +83,7 @@ const Customizer = () => {
       setActiveEditorTabs("");
     })
     .catch((err) => {
-      console.error("Error reading file:", error);
+      console.error("Error reading file:", err);
     } )
 
   }
@@ -123,8 +131,8 @@ const Customizer = () => {
                   key={tab.name}
                   tab={tab}
                   isFilterTab
-                  isActiveTab=""
-                  handleClick={() => {}}
+                  isActiveTab={activeEditorTab[tab.name]}
+                  handleClick={() => {handleAciveFilterTab(tab.name)}}
                   >
                 </Tab>
               ))}
