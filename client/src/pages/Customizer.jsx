@@ -29,8 +29,9 @@ const Customizer = () => {
   });
 
   //show tab content depending on the activeTab
-  const generateTabContent = () => {
+  const generateTabContent = () => { //if i pass in this argument it wont work
     switch (activeEditorTab){
+      //access state directly so we dont need to pass in anything
       case "colorpicker":
         return <ColorPicker />
       case "filepicker":
@@ -38,11 +39,30 @@ const Customizer = () => {
             file={file}
             setFile={setFile} //pass into child component
             readFile={readFile}
-        />
+          />
       case "aipicker":
-        return <AIPicker />
+        return <AIPicker
+          prompt={prompt}
+          setPrompt={setPrompt}
+          genratingImg={generatingImg}
+          handleSubmit={handleSubmit}
+        />
       default:
         return null;
+    }
+  }
+
+  const handleSubmit = async (type) => {
+    if(!prompt) return activeFilterTab("Please enter a prompt");
+
+    try {
+      //call our backend to generate an ai image!
+      
+    } catch(error){
+      alert(error)
+    } finally {
+      setGeneratingImg(false);
+      setActiveEditorTab("");
     }
   }
 
@@ -51,11 +71,11 @@ const Customizer = () => {
 
     state[decalType.stateProperty] = result;
     if(!activeFilterTab[decalType.filterTab]){
-      handleAciveFilterTab(decalType.filterTab)
+      handleActiveFilterTab(decalType.filterTab)
     }
   }
 
-  const handleAciveFilterTab = (tabName) => {
+  const handleActiveFilterTab = (tabName) => {
     switch(tabName){
       case "logoShirt":
         state.isLogoTexture = !activeFilterTab[tabName];
@@ -99,7 +119,7 @@ const Customizer = () => {
             {...slideAnimation('left')}
           >
             <div className="flex items-center min-h-screen"> 
-              <div className=" editortabs-container tabs">
+              <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
                   <Tab
                     key={tab.name}
@@ -107,6 +127,8 @@ const Customizer = () => {
                     handleClick={() => setActiveEditorTab(tab.name)}
                   />
                 ))}
+                {/* this will render tabcontent dynamically according to 
+                activeEditorTab state variable */}
                 {generateTabContent()}
               </div>
             </div>
@@ -132,7 +154,7 @@ const Customizer = () => {
                   tab={tab}
                   isFilterTab
                   isActiveTab={activeEditorTab[tab.name]}
-                  handleClick={() => {handleAciveFilterTab(tab.name)}}
+                  handleClick={() => {handleActiveFilterTab(tab.name)}}
                   >
                 </Tab>
               ))}
