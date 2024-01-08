@@ -16,6 +16,8 @@ Framer Motion
 Valtio
 
 Features:
+
+
 👉 3D Swag Generation: Generate unique 3D shirts/swag items dynamically
 
 👉 Color Customization: Apply any color to the 3D shirt/swag for personalized styling.
@@ -28,7 +30,7 @@ Features:
 
 👉 AI-Generated Textures: Implement AI-generated textures for enhanced 3D shirt customization.
 
-👉 Download Options:Dynamically change the application theme based on the selected color, enhancing user experience.
+👉 Download Options: Dynamically change the application theme based on the selected color, enhancing user experience.
 
 👉 Theme Change with Color Selection: Dynamically change the application theme based on the selected color, enhancing user experience
 
